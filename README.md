@@ -1,5 +1,7 @@
 # Bootcamp-project
 
+**integration of frontend and backend and the login is yet to be done
+
 This project contains a basic setup to develop a POS system 
 
 All client side code is inside the client directory .frontend is developed with react and reactstrap (reactstrap is used for components)
