@@ -1,0 +1,26 @@
+.remove-btn{
+  margin-right:0.5rem;
+}
+
+.fade-enter{
+  opacity:0.1;
+}
+
+.fade-enter-active{
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+
+/*in exit u start with opacity 1 which means button is fully visible*/
+
+.fade-exit{
+  opacity: 1;
+}
+
+/*opacity 0.01 button is barely visible */
+
+.fade-exit.fade-enter-active{
+  opacity: 0.01;
+  transition: opacity 1000ms ease-in;
+}
+
