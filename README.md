@@ -1,6 +1,6 @@
 # Bootcamp-project
 
-**integration of frontend and backend and the login is yet to be done
+***integration of frontend and backend and the login is yet to be done***
 
 This project contains a basic setup to develop a POS system 
 
