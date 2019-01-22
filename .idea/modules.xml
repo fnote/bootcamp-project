@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../MERN_shopping_list/.idea/MERN_shopping_list.iml" filepath="$PROJECT_DIR$/../MERN_shopping_list/.idea/MERN_shopping_list.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Sysco-bootcamp.iml" filepath="$PROJECT_DIR$/.idea/Sysco-bootcamp.iml" />
     </modules>
   </component>
 </project>

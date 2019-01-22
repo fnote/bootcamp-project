@@ -1,6 +1,7 @@
 const express=require("express");
 const mongoose=require("mongoose");
 const bodyParser =require("body-parser");
+const path=require("path");
 
 //tell server to look at routes
 const items=require('./routes/api/items');
@@ -27,6 +28,16 @@ mongoose.connect(db)
 //use routes
 //whatever that comes from api/items goes to items variable which points to items.js above
 app.use('/api/items',items);
+
+//serve static assets if in production
+if(process.env.NODE_ENV==='production'){
+    //set static folder
+    app.use(express.static('client/build'));
+
+    app.get('*', (req,res)=>{
+        res.sendFile(path.resolve(__dirname,'client','build','index.html'));
+    })
+}
 
 //process env port part added with deploying this on heroku in mind in the final step
 const port = process.env.PORT||5000;
