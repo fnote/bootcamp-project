@@ -30,3 +30,7 @@ run another npm install to get client side dependencies
 
 'npm run server'  will fire up a live server that watches changes continously and update accordingly   
 
+
+#API Documentation
+
+https://docs.google.com/document/d/19jIdDTgZrCAKLeBSoFCfwTPruE7F3oXNdQbo_N6kf7k/edit?usp=sharing
