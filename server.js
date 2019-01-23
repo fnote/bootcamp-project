@@ -5,6 +5,9 @@ const path=require("path");
 
 //tell server to look at routes
 const items=require('./routes/api/items');
+const user=require('./routes/api/user');
+const products=require('./routes/api/products');
+const orders=require('./routes/api/orders');
 
 //take requests and get data from the body request- body paser
 
@@ -28,6 +31,9 @@ mongoose.connect(db)
 //use routes
 //whatever that comes from api/items goes to items variable which points to items.js above
 app.use('/api/items',items);
+app.use('/api/user',user);
+app.use('/api/products',products);
+app.use('/api/orders',orders);
 
 //serve static assets if in production
 if(process.env.NODE_ENV==='production'){
