@@ -2,9 +2,12 @@ import React, { Component } from "react";
 import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import "../login.css";
 import {connect} from 'react-redux';
-import {getItems,deleteItem } from '../actions/itemActions';
+import {  } from '../actions/customerActions';
 import {MapStateToProps} from "react-redux/es/connect/mapStateToProps";
 import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
+import axios from 'axios';
+import {login} from "../actions/customerActions";
 
 class Login extends Component {
     constructor(props) {
@@ -17,6 +20,8 @@ class Login extends Component {
     }
 
     componentDidMount() {
+
+
     }
 
     validateForm() {
@@ -32,27 +37,22 @@ class Login extends Component {
     handleSubmit = event => {
         event.preventDefault();
 
-        //call backend
+        const newUser = {
+            email: this.state.email,
+            password: this.state.password
+        };
 
-            fetch('/api/users', {
-                method: 'POST',
-                body: JSON.stringify(this.state),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(res => {
-                    if (res.status === 200) {
-                        this.props.history.push('/');
-                    } else {
-                        const error = new Error(res.error);
-                        throw error;
-                    }
-                })
-                .catch(err => {
-                    console.error(err);
-                    alert('Error logging in please try again');
-                });
+        //Add User
+        console.log(newUser);
+        this.props.login(newUser);
+
+        const {loggedIn} = this.props.user;
+        console.log(loggedIn);
+
+        if (loggedIn) {
+            console.log('user logged on');
+            this.props.history.push('/userOrders');
+        }
     }
 
 
@@ -98,11 +98,17 @@ class Login extends Component {
 //     item:PropTypes.object.isRequired,
 // }
 //
-// const mapStateToProps =(state)=>({
-//
-//     item:state.item
-// });
 
-export default Login;
+
+const mapStateToProps = state => ({
+    user: state.user
+});
+
+export default connect(
+    mapStateToProps,
+    {login}
+)(Login);
+
+
 //convert state in to an item property so that can be used in the comonent
 

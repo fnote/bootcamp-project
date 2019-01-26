@@ -4,9 +4,10 @@ const mongoose = require("mongoose");
 
 const Order = require("../../models/order");
 const Product = require("../../models/product");
+const checkAuth = require('../../middleware/check-auth');
 
 // Handle incoming GET requests to /orders
-router.get("/", (req, res, next) => {
+router.get("/",(req, res, next) => {
     Order.find()
         .populate('product')
         .select("product quantity _id")
@@ -34,7 +35,7 @@ router.get("/", (req, res, next) => {
         });
 });
 
-router.post("/", (req, res, next) => {
+router.post("/",checkAuth, (req, res, next) => {
     Product.findById(req.body.productId)
 
         .then(product => {
@@ -73,7 +74,7 @@ router.post("/", (req, res, next) => {
         });
 });
 
-router.get("/:orderId", (req, res, next) => {
+router.get("/:orderId",checkAuth, (req, res, next) => {
     Order.findById(req.params.orderId)
         .populate('product')
         .exec()

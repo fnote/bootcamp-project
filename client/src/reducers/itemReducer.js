@@ -4,16 +4,10 @@ import uuid from "uuid";
 import {GET_ITEMS,ADD_ITEM,DELETE_ITEM,LOADING_ITEMS} from "../actions/types";
 
 const initialState={
-    items:[
-
-        // {id:uuid(), name: 'eggs'},
-        // {id:uuid(), name:'milk'},
-        // {id:uuid(), name:'steak' },
-        // {id:uuid(), name: 'water' },
-    ],
+    items:[],
     loading:false
 }
-const func =  function (state=initialState,action) {
+const itemReducer =  function (state=initialState, action) {
     switch (action.type) {
         case GET_ITEMS:
             return{
@@ -44,4 +38,4 @@ const func =  function (state=initialState,action) {
     }
 
 }
-export {func}
+export default itemReducer;

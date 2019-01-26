@@ -1,6 +1,7 @@
 const express=require("express");
 const mongoose=require("mongoose");
 const bodyParser =require("body-parser");
+const cors = require("cors");
 const path=require("path");
 
 //tell server to look at routes
@@ -30,6 +31,7 @@ mongoose.connect(db)
 
 //use routes
 //whatever that comes from api/items goes to items variable which points to items.js above
+
 app.use('/api/items',items);
 app.use('/api/user',user);
 app.use('/api/products',products);

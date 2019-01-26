@@ -46,11 +46,13 @@ export const addItem =(item)=>dispatch=>{
     // };
 
     axios.post('/api/items',item)
-        .then(res=>
+        .then((res)=> {
+            console.log(res)
             dispatch({
-                type:ADD_ITEM,
-                payload:res.data
-            }))
+                type: ADD_ITEM,
+                payload: res.data
+            })
+        })
 
 
 }
