@@ -7,6 +7,7 @@ import {connect} from 'react-redux';
 import {getItems,deleteItem } from '../actions/itemActions';
 import {MapStateToProps} from "react-redux/es/connect/mapStateToProps";
 import PropTypes from 'prop-types';
+import OrdersComponent from'./ordersComponent';
 
 class ShoppingList extends Component{
 
@@ -29,34 +30,26 @@ class ShoppingList extends Component{
         this.props.deleteItem(id);
     }
 
+    onAddToCart= (id)=>{
+        this.props.callbacks(id);
+    }
+
+
     render() {
         //pull from state
         // const {items} = this.state
+
         const {items} = this.props.item;
+
         return (
             <Container>
 
-                {/*<button color="dark" style={{marginBottom: '2rem'}}*/}
-                        {/*onClick={() => {*/}
-                            {/*const name = prompt('Enter item');*/}
-
-                            {/*if (name) {*/}
-                                {/*this.setState(state => ({*/}
-                                    {/*items: [...state.items, {id: uuid, name}]*/}
-
-                                {/*}));*/}
-                            {/*}*/}
-                        {/*}*/}
-
-                        {/*}*/}
-                {/*> ADD ITEM*/}
-                {/*</button>*/}
-
                 <ListGroup>
+                    <h3>available products</h3>
 
                     <TransitionGroup className="shopping-list">
 
-                        {items.map(({_id,name})=>(
+                        {items.map(({_id,name,price})=>(
                             <CSSTransition key= {_id} timeout={500} classNames="fade">
 
                                 <ListGroupItem>
@@ -72,8 +65,11 @@ class ShoppingList extends Component{
                                     &times;
 
                                     </button>
-
+                                    <h3>items </h3>
                                     {name}
+                                    <button onClick={this.onAddToCart.bind(this,_id )}>add item to cart</button>
+                                    <button >button</button>
+
                                 </ListGroupItem>
                             </CSSTransition>
                         ) )}

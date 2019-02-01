@@ -11,19 +11,20 @@ import axios from 'axios';
 //LOOKS for types in item reducer
 //call get items from component
 //it calls item reducer and fetches state
-export const getProducts =()=>dispatch=>{
-    //
-    // return{
-    //   type:GET_ITEMS
-    // };
+export const getProducts =  ()=>  dispatch=> {
 
+    console.log("get products called in actions");
     dispatch(setProductLoading());
-    axios.get('/api/products')
-        .then(res=>
-            dispatch({
-                type:GET_PRODUCTS,
-                payload:res.data
-            }))
+      axios.get('/api/products')
+        .then(res => {
+                console.log(res);
+                dispatch({
+                    type: GET_PRODUCTS,
+                    payload: res.data.products
+                })
+            }
+        )
+
 }
 
 

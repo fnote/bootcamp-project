@@ -1,7 +1,7 @@
 //where our actual state is gonna go
 
 import uuid from "uuid";
-import {GET_ORDERS,ADD_ORDER,DELETE_ORDER,LOADING_ORDER} from "../actions/types";
+import {GET_ORDERS,ADD_ORDER,DELETE_ORDER,LOADING_ORDER,VIEW_ORDER,SET_ORDER_ID,GET_ORDER_ID} from "../actions/types";
 
 const initialState={
     orders:[
@@ -11,11 +11,19 @@ const initialState={
         // {id:uuid(), name:'steak' },
         // {id:uuid(), name: 'water' },
     ],
-    loading:false
+    loading:false,
+    orderID:''
 }
+
 const orderReducer =  function (state=initialState,action) {
     switch (action.type) {
         case GET_ORDERS:
+            return{
+                ...state,
+                orders:action.payload,
+                loading:false
+            };
+        case VIEW_ORDER:
             return{
                 ...state,
                 orders:action.payload,
@@ -36,6 +44,13 @@ const orderReducer =  function (state=initialState,action) {
         case LOADING_ORDER:
             return{
                 ...state,
+                loading:true
+            };
+
+        case SET_ORDER_ID:
+            return{
+                ...state,
+                orderID:action.payload,
                 loading:true
             };
 

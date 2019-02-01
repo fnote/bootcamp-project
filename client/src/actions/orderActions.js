@@ -1,4 +1,4 @@
-import {GET_ITEMS, ADD_ITEM, DELETE_ORDER, LOADING_ITEMS, GET_ORDERS, ADD_ORDER, LOADING_ORDER} from "../actions/types";
+import {GET_ITEMS,VIEW_ORDER, ADD_ITEM, DELETE_ORDER, LOADING_ITEMS, GET_ORDERS, ADD_ORDER, LOADING_ORDER,SET_ORDER_ID,GET_ORDER_ID} from "../actions/types";
 import axios from 'axios';
 //LOOKS for types in item reducer
 //call get items from component
@@ -14,6 +14,25 @@ export const getOrders =()=>dispatch=>{
             console.log(res);
             dispatch({
                 type: GET_ORDERS,
+                payload: res.data.orders
+            })
+        }).catch((error)=>{console.log(error)})
+
+}
+
+export const viewOrder=(id)=>dispatch=>{
+    //
+    // return{
+    //   type:GET_ITEMS
+    // };
+    //dispatch(setOrderLoading());
+    console.log('view order');
+    axios.get(`/api/orders/${id}`)
+    // axios.get(`/api/orders`)
+        .then(res=> {
+            console.log(res);
+            dispatch({
+                type: VIEW_ORDER,
                 payload: res.data.orders
             })
         }).catch((error)=>{console.log(error)})
@@ -63,5 +82,22 @@ export const setOrderLoading =()=>{
         type:LOADING_ORDER,
     };
 }
+
+export const setOrderID =(id)=>{
+
+    return{
+        type:SET_ORDER_ID,
+        payload:id
+    };
+}
+
+export const getOrderID =()=>{
+
+    return{
+        type:GET_ORDER_ID,
+    };
+}
+
+
 
 

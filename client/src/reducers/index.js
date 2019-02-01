@@ -12,6 +12,7 @@ export default combineReducers({
     item:itemReducer,
     order:orderReducer,
     user:customerReducer,
+    product:productReducer,
     customerOrder:customerOrderReducer,
     // product:productReducer
 })

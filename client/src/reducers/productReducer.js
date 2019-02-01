@@ -1,4 +1,5 @@
 //where our actual state is gonna go
+//alwats returns a state
 
 import uuid from "uuid";
 import {GET_PRODUCTS,ADD_PRODUCT,DELETE_PRODUCT,LOADING_PRODUCTS} from "../actions/types";
@@ -7,24 +8,29 @@ const initialState={
     products:[],
     loading:false
 }
-const func =  function (state=initialState,action) {
+const productReducer =  function (state=initialState,action) {
+    console.log("product reducer called");
+
+
     switch (action.type) {
+
         case GET_PRODUCTS:
+            console.log("GETPRODUCTS ARE CALLED");
             return{
                 ...state,
-                items:action.payload,
+                products:action.payload,
                 loading:false
             };
         case DELETE_PRODUCT:
             return{
                 ...state,
-                items:state.items.filter(product=>product._id !==action.payload)
+                products:state.items.filter(product=>product._id !==action.payload)
             };
 
         case ADD_PRODUCT:
             return{
                 ...state,
-                items:[action.payload,...state.items]
+                products:[action.payload,...state.items]
             };
 
         case LOADING_PRODUCTS:
@@ -38,4 +44,5 @@ const func =  function (state=initialState,action) {
     }
 
 }
-export {func}
+
+export default productReducer;
